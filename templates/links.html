@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h2>Проверенные кулинарные сайты</h2>
+    <ul class="link-list">
+        <li>
+            <a href="https://www.povarenok.ru" target="_blank">Поварёнок.ру</a> — огромная база домашних рецептов с фото и отзывами.
+        </li>
+        <li>
+            <a href="https://eda.ru" target="_blank">eda.ru</a> — пошаговые рецепты на каждый день, удобный поиск по продуктам.
+        </li>
+        <li>
+            <a href="https://www.gastronom.ru" target="_blank">Гастрономъ</a> — журнал о еде: рецепты, статьи о продуктах и кулинарные традиции.
+        </li>
+        <li>
+            <a href="https://ru.wikipedia.org/wiki/Русская_кухня" target="_blank">Википедия: Русская кухня</a> — интересно почитать об истории наших любимых блюд.
+        </li>
+    </ul>
+    
+    <h2>Наши любимые блюда</h2>
+    <div class="img-container">
+        <img src="{% static 'images/blini.jpg' %}" alt="Блины">
+    </div>
+    <p>Больше всего на «Маминой кухне» любят борщ, шарлотку и блины со сгущёнкой. Если хотите узнать о них подробнее — вернитесь на <a href="{% url 'index' %}" style="color: #8b1c3e;">главную страницу</a>.</p>
+{% endblock %}

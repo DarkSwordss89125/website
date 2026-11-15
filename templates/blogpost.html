@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div style="background: white; padding: 20px; border-radius: 8px; border: 1px solid #d2b48c;">
+        <h2 style="border-bottom: none; margin-top: 0;">{{ post.title }}</h2>
+        <p style="color: #777; font-size: 0.9em;">Опубликовано: {{ post.published_date|date:"d.m.Y H:i" }} | Автор: {{ post.author.username }}</p>
+        
+        {% if post.image %}
+            <div style="text-align: center; margin-bottom: 20px;">
+                <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width: 100%; border-radius: 10px; border: 2px solid #d2b48c;">
+            </div>
+        {% endif %}
+        
+        <div style="line-height: 1.8; font-size: 16px;">
+            {{ post.full_content|linebreaks }}
+        </div>
+        
+        <hr style="border: 0; border-top: 1px dashed #d2b48c; margin: 20px 0;">
+        <a href="{% url 'blog' %}" style="color: #8b1c3e; font-weight: bold; text-decoration: none;">&larr; Назад к списку статей</a>
+    </div>
+
+    <div style="margin-top: 30px;">
+        <h3 style="color: #8b1c3e;">Комментарии ({{ comments.count }})</h3>
+        
+        {% if user.is_authenticated %}
+            <form method="post" style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #d2b48c; margin-bottom: 20px;">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" style="background-color: #8b1c3e; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Отправить</button>
+            </form>
+        {% else %}
+            <p style="background: #fff3cd; padding: 10px; border-radius: 5px;">Чтобы оставить комментарий, пожалуйста, <a href="{% url 'login' %}" style="color: #8b1c3e; font-weight: bold;">войдите</a> на сайт.</p>
+        {% endif %}
+
+        {% for comment in comments %}
+            <div style="background: #fdf5e6; padding: 15px; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #8b1c3e;">
+                <p style="margin: 0 0 5px 0;"><strong>{{ comment.author.username }}</strong> <span style="color: #777; font-size: 0.8em;">{{ comment.date|date:"d.m.Y H:i" }}</span></p>
+                <p style="margin: 0;">{{ comment.text }}</p>
+            </div>
+        {% empty %}
+            <p>Пока нет комментариев. Будьте первым!</p>
+        {% endfor %}
+    </div>
+{% endblock %}

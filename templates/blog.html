@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Наш блог</h2>
+    {% for post in posts %}
+        <div style="background: white; padding: 20px; border-radius: 8px; border: 1px solid #d2b48c; margin-bottom: 20px;">
+            <h3 style="color: #8b1c3e; margin-top: 0;">{{ post.title }}</h3>
+            <p style="color: #777; font-size: 0.9em;">Опубликовано: {{ post.published_date|date:"d.m.Y H:i" }} | Автор: {{ post.author.username }}</p>
+            <p>{{ post.short_description }}</p>
+            <a href="{% url 'blogpost' post.id %}" style="display: inline-block; background-color: #8b1c3e; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">Читать далее</a>
+        </div>
+    {% empty %}
+        <p>Пока нет ни одной статьи.</p>
+    {% endfor %}
+{% endblock %}

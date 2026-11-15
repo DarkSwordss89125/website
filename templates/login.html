@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Вход на сайт</h2>
+    <form method="post" style="background: white; padding: 20px; border-radius: 8px; border: 1px solid #d2b48c;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="background-color: #8b1c3e; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-size: 16px; cursor: pointer; font-family: 'Georgia', serif;">
+            Войти
+        </button>
+    </form>
+    <p style="margin-top: 15px;">Нет аккаунта? <a href="{% url 'register' %}" style="color: #8b1c3e;">Зарегистрируйтесь</a></p>
+{% endblock %}

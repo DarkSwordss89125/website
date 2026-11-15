@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h2>Обратная связь</h2>
+    <p>Поделитесь своим мнением о нашем сайте! Это поможет нам стать лучше.</p>
+
+    {% if submitted_data %}
+        <div style="background-color: #e8f5e9; padding: 15px; border-radius: 5px; border: 1px solid #c8e6c9; margin-bottom: 20px;">
+            <h3 style="color: #2e7d32; margin-top: 0;">Спасибо за ваш отзыв!</h3>
+            <p>Мы получили следующие данные:</p>
+            <ul>
+                <li><strong>Имя:</strong> {{ submitted_data.name }}</li>
+                <li><strong>Оценка сайта:</strong> {{ submitted_data.rating }} из 5</li>
+                <li><strong>Частота посещения:</strong> {{ submitted_data.frequency }}</li>
+                <li><strong>Понравилось:</strong> 
+                    {% for feature in submitted_data.features %}
+                        {{ feature }}{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                        (ничего не выбрано)
+                    {% endfor %}
+                </li>
+                <li><strong>Пожелания:</strong> {{ submitted_data.wishes|default:"(нет)" }}</li>
+            </ul>
+        </div>
+    {% endif %}
+
+    <form method="post" style="background: white; padding: 20px; border-radius: 8px; border: 1px solid #d2b48c;">
+        {% csrf_token %}
+        
+        <div style="margin-bottom: 15px;">
+            <label for="{{ form.name.id_for_label }}" style="font-weight: bold; display: block; margin-bottom: 5px;">{{ form.name.label }}:</label>
+            {{ form.name }}
+            {{ form.name.errors }}
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label style="font-weight: bold; display: block; margin-bottom: 5px;">{{ form.rating.label }}:</label>
+            {{ form.rating }}
+            {{ form.rating.errors }}
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label for="{{ form.frequency.id_for_label }}" style="font-weight: bold; display: block; margin-bottom: 5px;">{{ form.frequency.label }}:</label>
+            {{ form.frequency }}
+            {{ form.frequency.errors }}
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label style="font-weight: bold; display: block; margin-bottom: 5px;">{{ form.features.label }}:</label>
+            {{ form.features }}
+            {{ form.features.errors }}
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label for="{{ form.wishes.id_for_label }}" style="font-weight: bold; display: block; margin-bottom: 5px;">{{ form.wishes.label }}:</label>
+            {{ form.wishes }}
+            {{ form.wishes.errors }}
+        </div>
+
+        <button type="submit" id="submit-btn" style="background-color: #8b1c3e; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-size: 16px; cursor: pointer; font-family: 'Georgia', serif;">
+            Отправить отзыв
+        </button>
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const btn = document.getElementById("submit-btn");
+            if (btn) {
+                btn.addEventListener("mouseenter", function() { this.style.color = "#b8860b"; });
+                btn.addEventListener("mouseleave", function() { this.style.color = "white"; });
+            }
+            const inputs = document.querySelectorAll("form input[type='text'], form textarea, form select");
+            inputs.forEach(function(input) {
+                input.addEventListener("focus", function() { this.style.backgroundColor = "#fffacd"; });
+                input.addEventListener("blur", function() { this.style.backgroundColor = "white"; });
+            });
+        });
+    </script>
+{% endblock %}

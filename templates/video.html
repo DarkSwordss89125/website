@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Наши видео-рецепты</h2>
+    <p>Смотрите, как мы готовим наши любимые блюда.</p>
+    
+    <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
+        <div style="flex: 1; min-width: 300px; background: white; padding: 15px; border-radius: 8px; border: 1px solid #d2b48c;">
+            <h3 style="margin-top: 0; color: #8b1c3e;">Видео 1</h3>
+            <video width="100%" controls style="border-radius: 5px;">
+                <source src="/media/video1.mp4" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+            </video>
+        </div>
+        <div style="flex: 1; min-width: 300px; background: white; padding: 15px; border-radius: 8px; border: 1px solid #d2b48c;">
+            <h3 style="margin-top: 0; color: #8b1c3e;">Видео 2</h3>
+            <video width="100%" controls style="border-radius: 5px;">
+                <source src="/media/video2.mp4" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+            </video>
+        </div>
+    </div>
+{% endblock %}
