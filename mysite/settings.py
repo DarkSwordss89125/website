@@ -3,11 +3,11 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-ваш-секретный-ключ'
+SECRET_KEY = 'b6d7cac083c4512dc2280810e3ca7e1d'
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['fonariki123']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.pythonanywhere.com', '.onrender.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
