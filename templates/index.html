@@ -10,17 +10,19 @@
             <button type="button" data-bs-target="#foodCarousel" data-bs-slide-to="2"></button>
         </div>
         <div class="carousel-inner">
-            <!-- ПЕРВАЯ КАРТИНКА (ваша stol.jpg) -->
+            <!-- ПЕРВАЯ КАРТИНКА (из папки static) -->
             <div class="carousel-item active">
                 <img src="{% static 'images/stol.jpg' %}" class="d-block w-100" alt="Домашний стол" style="height: 400px; object-fit: cover;">
             </div>
-            <!-- ВТОРАЯ КАРТИНКА (замените slide2.jpg на имя вашего файла) -->
+            
+            <!-- ВТОРАЯ КАРТИНКА (из папки media) -->
             <div class="carousel-item">
-                <img src="{% static 'images/slide2.jpg' %}" class="d-block w-100" alt="Вкусная еда" style="height: 400px; object-fit: cover;">
+                <img src="/media/blog_images/kuxhna.jpg" class="d-block w-100" alt="Уютная кухня" style="height: 400px; object-fit: cover;">
             </div>
-            <!-- ТРЕТЬЯ КАРТИНКА (замените slide3.jpg на имя вашего файла) -->
+            
+            <!-- ТРЕТЬЯ КАРТИНКА (из папки media) -->
             <div class="carousel-item">
-                <img src="{% static 'images/slide3.jpg' %}" class="d-block w-100" alt="Уютная кухня" style="height: 400px; object-fit: cover;">
+                <img src="/media/blog_images/vkusnayaeda.jpg" class="d-block w-100" alt="Вкусная еда" style="height: 400px; object-fit: cover;">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#foodCarousel" data-bs-slide="prev">
